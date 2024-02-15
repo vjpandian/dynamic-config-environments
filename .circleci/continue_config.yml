@@ -6,12 +6,12 @@ parameters:
     default: "dev"
 
 jobs: 
-  continue-job:
+  dev-job:
     machine: true
     steps:
       - checkout
 
 workflows:
-  main:
+  dev-wf:
     jobs:
-      - continue-job
+      - dev-job
