@@ -1,0 +1,18 @@
+version: 2.1
+
+parameters:
+  rebuild-param-1:
+    type: string
+    default: "bar"
+
+jobs: 
+  rebuild-job:
+    machine: true
+    steps:
+      - checkout
+      - run: echo << pipeline.parameters.rebuild-param-1 >>
+
+workflows:
+  rebuild-wf:
+    jobs:
+      - rebuild-job

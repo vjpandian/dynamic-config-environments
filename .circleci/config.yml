@@ -37,7 +37,7 @@ jobs:
             - checkout
             - continuation/continue:
                 configuration_path: .circleci/staging.yml
-                parameters: '{"staging-param-1":"foo"}'
+                parameters: '{"staging-param-1":"foo", "staging-param-2": true}'
 workflows:
   my-workflow:
     jobs:
