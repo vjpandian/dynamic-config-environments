@@ -11,7 +11,9 @@ jobs:
     docker: 
       - image: cimg/base:stable
     steps:
-      - run: echo "Param that was passed in this job was << pipeline.parameters.environment >>"
+      - run: 
+          command: echo "Param that was passed in this job was << pipeline.parameters.environment >>"
+          name: Capture the parameter passed in the UI or API for this job
       - when:
           condition:
             and:
