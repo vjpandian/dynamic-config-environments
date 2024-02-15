@@ -13,5 +13,6 @@ jobs:
 
 workflows:
   main:
+    when: << pipeline.parameters.further >>
     jobs:
       - continue-job
