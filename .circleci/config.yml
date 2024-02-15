@@ -1,0 +1,17 @@
+version: 2.1
+setup: true
+orbs:
+  continuation: circleci/continuation@1.0.0
+workflows:
+  setup-workflow:
+    jobs:
+      - continuation/continue:
+          pre-steps:
+            - checkout
+            - run:
+                name: merge config files
+                command: |
+                  cd .circleci
+                  cat orbs.yml parameters.yml executors.yml commands.yml jobs.yml workflows.yml > continue-config.yml
+          configuration_path: .circleci/continue_config.yml
+          parameters: '{"image-tag":"current"}'
