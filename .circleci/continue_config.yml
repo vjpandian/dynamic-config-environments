@@ -1,0 +1,17 @@
+version: 2.1
+
+parameters:
+  further:
+    type: string
+    default: false
+
+jobs: 
+  continue-job:
+    machine: true
+    steps:
+      - checkout
+
+workflows:
+  main:
+    jobs:
+      - continue-job
