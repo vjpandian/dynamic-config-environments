@@ -9,7 +9,6 @@ jobs:
     steps:
       - checkout
       - continuation/continue:
-          parameters: { "env": "dev" }
           configuration_path: .circleci/continue_config.yml
 workflows:
   my-workflow:
