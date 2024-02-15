@@ -1,0 +1,17 @@
+version: 2.1
+
+parameters:
+  env:
+    type: string
+    default: "qa"
+
+jobs: 
+  qa-job:
+    machine: true
+    steps:
+      - checkout
+
+workflows:
+  qa-wf:
+    jobs:
+      - qa-job
