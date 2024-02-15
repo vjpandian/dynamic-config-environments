@@ -1,7 +1,7 @@
 version: 2.1
 setup: true
 parameters:
-  env:
+  environment:
    type: string
    default: "dev"
 orbs:
@@ -11,11 +11,11 @@ jobs:
     docker: 
       - image: cimg/base:stable
     steps:
-      - run: echo "Param that was passed in this job was << pipeline.parameters.env >>"
+      - run: echo "Param that was passed in this job was << pipeline.parameters.environment >>"
       - when:
           condition:
             and:
-              - equal: [ dev, << pipeline.parameters.env >> ]
+              - equal: [ dev, << pipeline.parameters.environment >> ]
           steps:
             - checkout
             - continuation/continue:
@@ -24,7 +24,7 @@ jobs:
       - when:
           condition:
             and:
-              - equal: [ rebuild, << pipeline.parameters.env >> ]
+              - equal: [ rebuild, << pipeline.parameters.environment >> ]
           steps:
             - checkout
             - continuation/continue:
@@ -33,7 +33,7 @@ jobs:
       - when:
           condition:
             and:
-              - equal: [ staging, << pipeline.parameters.env >> ]
+              - equal: [ staging, << pipeline.parameters.environment >> ]
           steps:
             - checkout
             - continuation/continue:
