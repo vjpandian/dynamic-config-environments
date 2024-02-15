@@ -1,5 +1,9 @@
 version: 2.1
 setup: true
+parameters:
+  env:
+   type: string
+   default: "dev"
 orbs:
   continuation: circleci/continuation@1.0.0
 jobs:
@@ -7,10 +11,24 @@ jobs:
     docker: 
       - image: cimg/base:stable
     steps:
-      - checkout
-      - continuation/continue:
-          configuration_path: .circleci/continue_config.yml
-          parameters: '{"env":"dev"}'
+      - when:
+          condition:
+            and:
+              - equal: [ dev, << pipeline.parameters.env >> ]
+          steps:
+            - checkout
+            - continuation/continue:
+                configuration_path: .circleci/continue_config.yml
+                parameters: '{"env":"dev"}'
+      - when:
+          condition:
+            and:
+              - equal: [ qa, << pipeline.parameters.env >> ]
+          steps:
+            - checkout
+            - continuation/continue:
+                configuration_path: .circleci/qa.yml
+                parameters: '{"qa-param-1":"foo"}'
 workflows:
   my-workflow:
     jobs:
