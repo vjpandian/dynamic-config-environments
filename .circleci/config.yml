@@ -11,6 +11,7 @@ jobs:
     docker: 
       - image: cimg/base:stable
     steps:
+      - run: echo "Param that was passed in this job was << pipeline.parameters.env >>"
       - when:
           condition:
             and:
