@@ -1,0 +1,22 @@
+version: 2.1
+
+parameters:
+  staging-param-1:
+    type: string
+    default: "bar"
+  staging-param-2:
+    type: boolean
+    default: false
+
+jobs: 
+  staging-job:
+    machine: true
+    steps:
+      - checkout
+      - run: echo << pipeline.parameters.staging-param-1 >>
+      - run: echo << pipeline.parameters.staging-param-2 >>
+
+workflows:
+  staging-wf:
+    jobs:
+      - staging-job

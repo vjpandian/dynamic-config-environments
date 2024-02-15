@@ -18,17 +18,26 @@ jobs:
           steps:
             - checkout
             - continuation/continue:
-                configuration_path: .circleci/continue_config.yml
+                configuration_path: .circleci/dev.yml
                 parameters: '{"env":"dev"}'
       - when:
           condition:
             and:
-              - equal: [ qa, << pipeline.parameters.env >> ]
+              - equal: [ rebuild, << pipeline.parameters.env >> ]
           steps:
             - checkout
             - continuation/continue:
-                configuration_path: .circleci/qa.yml
-                parameters: '{"qa-param-1":"foo"}'
+                configuration_path: .circleci/rebuild.yml
+                parameters: '{"rebuild-param-1":"foo"}'
+      - when:
+          condition:
+            and:
+              - equal: [ staging, << pipeline.parameters.env >> ]
+          steps:
+            - checkout
+            - continuation/continue:
+                configuration_path: .circleci/staging.yml
+                parameters: '{"staging-param-1":"foo"}'
 workflows:
   my-workflow:
     jobs:
