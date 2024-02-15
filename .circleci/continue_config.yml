@@ -1,9 +1,9 @@
 version: 2.1
 
 parameters:
-  further:
-    type: boolean
-    default: false
+  env:
+    type: string
+    default: "dev"
 
 jobs: 
   continue-job:
@@ -13,6 +13,5 @@ jobs:
 
 workflows:
   main:
-    when: << pipeline.parameters.further >>
     jobs:
       - continue-job
