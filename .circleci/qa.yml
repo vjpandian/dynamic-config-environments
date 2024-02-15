@@ -1,15 +1,16 @@
 version: 2.1
 
 parameters:
-  env:
+  qa-param-1:
     type: string
-    default: "qa"
+    default: "bar"
 
 jobs: 
   qa-job:
     machine: true
     steps:
       - checkout
+      - run: echo << pipeline.parameters.qa-param-1 >>
 
 workflows:
   qa-wf:
