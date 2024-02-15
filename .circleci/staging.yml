@@ -7,6 +7,9 @@ parameters:
   staging-param-2:
     type: boolean
     default: false
+  environment:
+   type: string
+   default: "staging"
 
 jobs: 
   staging-job:

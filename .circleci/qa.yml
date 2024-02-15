@@ -4,6 +4,9 @@ parameters:
   qa-param-1:
     type: string
     default: "bar"
+  environment:
+   type: string
+   default: "qa"
 
 jobs: 
   qa-job:

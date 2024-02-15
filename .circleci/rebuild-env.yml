@@ -4,6 +4,9 @@ parameters:
   rebuild-param-1:
     type: string
     default: "bar"
+  environment:
+   type: string
+   default: "rebuild-env"
 
 jobs: 
   rebuild-job:
