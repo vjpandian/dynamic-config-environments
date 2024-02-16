@@ -1,11 +1,18 @@
 version: 2.1
+
 setup: true
+
 parameters:
   environment:
    type: string
    default: "dev"
+  wf-2:
+   type: boolean
+   default: false
+
 orbs:
   continuation: circleci/continuation@1.0.0
+
 jobs:
   simple-test:
     docker: 
@@ -41,7 +48,18 @@ jobs:
             - continuation/continue:
                 configuration_path: .circleci/staging.yml
                 parameters: '{"staging-param-1":"foo", "staging-param-2": true}'
+
+  deploy-2:
+    machine: true
+    steps:
+      - run: echo "this is a separate job that can be called in a different workflow"
+      
 workflows:
   my-workflow:
     jobs:
       - simple-test
+
+  workflow-2:
+    when: << pipeline.parameters.wf-2 >>
+    jobs:
+      - deploy-2
